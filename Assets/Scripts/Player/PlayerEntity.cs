@@ -1,4 +1,6 @@
 using System;
+using Core.Enum;
+using Core.Tools;
 using UnityEngine;
 
 namespace Player
@@ -7,15 +9,17 @@ namespace Player
 
     public class PlayerEntity : MonoBehaviour
     {
-        
         [Header("HorizontalMovement")]
         [SerializeField] private float _horizontalSpeed;
-        [SerializeField] private bool _faceRight;
+        [SerializeField] private Direction _direction;
         
         [Header("Jump")]
         [SerializeField] private float _jumpForce;
         [SerializeField] private LayerMask _groundLayerMask;
         
+        [Header("Camera")]
+        [SerializeField] private DirectionalCameraPair _directionalCameras;
+
         private Rigidbody2D _playerRb;
         private CapsuleCollider2D _playerCollider2D;
         private float _raycastDistance = 1.49f;
@@ -40,7 +44,7 @@ namespace Player
         }
         private void SetDirection(float direction)
         {
-            if ((_faceRight && direction < 0) || (!_faceRight && direction > 0))
+            if ((_direction == Direction.Right && direction < 0) || (_direction == Direction.Left && direction > 0))
             {
                 Flip();
             }
@@ -48,13 +52,22 @@ namespace Player
         private void Flip()
         {
             transform.Rotate(0,180,0);
-            _faceRight = !_faceRight;
+            _direction = _direction == Direction.Right ? Direction.Left : Direction.Right;
+            CameraChange();
         }
         
         private bool IsOnGroundCheck()
         {
            RaycastHit2D groundRayHit =  Physics2D.Raycast(_playerCollider2D.bounds.center, Vector2.down,_raycastDistance,_groundLayerMask);
            return groundRayHit.collider != null;
+        }
+
+        private void CameraChange()
+        {
+            foreach (var cameraPair in _directionalCameras.DirectionalCameras)
+            {
+                cameraPair.Value.enabled = cameraPair.Key == _direction;
+            }
         }
         
     }
