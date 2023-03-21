@@ -1,6 +1,7 @@
 using System;
+using System.Collections;
 using Core.Enum;
-using Core.Tools;
+using Core.Tools;using Cinemachine;
 using UnityEngine;
 
 namespace Player
@@ -19,7 +20,9 @@ namespace Player
         
         [Header("Camera")]
         [SerializeField] private DirectionalCameraPair _directionalCameras;
-
+        [SerializeField] private CinemachineVirtualCamera _startCamera;
+        [SerializeField] private CinemachineVirtualCamera _endCamera;
+        
         private Rigidbody2D _playerRb;
         private CapsuleCollider2D _playerCollider2D;
         private float _raycastDistance = 1.49f;
@@ -28,6 +31,7 @@ namespace Player
         {
             _playerRb = GetComponent<Rigidbody2D>();
             _playerCollider2D = GetComponent<CapsuleCollider2D>();
+            //ShowLevel();
         }
         
         public void Jump()
@@ -35,6 +39,7 @@ namespace Player
             if (IsOnGroundCheck()) 
                 _playerRb.AddForce(_jumpForce * Vector2.up,ForceMode2D.Impulse);
         }
+        
         public void MoveHorizontaly(float direction)
         {
             SetDirection(direction);
@@ -42,6 +47,7 @@ namespace Player
             velocity.x = direction * _horizontalSpeed;
             _playerRb.velocity = velocity;
         }
+        
         private void SetDirection(float direction)
         {
             if ((_direction == Direction.Right && direction < 0) || (_direction == Direction.Left && direction > 0))
@@ -49,6 +55,7 @@ namespace Player
                 Flip();
             }
         }
+        
         private void Flip()
         {
             transform.Rotate(0,180,0);
@@ -58,8 +65,8 @@ namespace Player
         
         private bool IsOnGroundCheck()
         {
-           RaycastHit2D groundRayHit =  Physics2D.Raycast(_playerCollider2D.bounds.center, Vector2.down,_raycastDistance,_groundLayerMask);
-           return groundRayHit.collider != null;
+            RaycastHit2D groundRayHit =  Physics2D.Raycast(_playerCollider2D.bounds.center, Vector2.down,_raycastDistance,_groundLayerMask);
+            return groundRayHit.collider != null;
         }
 
         private void CameraChange()
@@ -69,6 +76,26 @@ namespace Player
                 cameraPair.Value.enabled = cameraPair.Key == _direction;
             }
         }
-        
+
+        private void ShowLevel()
+        {
+            StartCoroutine(ShowLevelTimer());
+        }
+
+        private void SwitchShowLevelCameras()
+        {
+            _endCamera.enabled =!_endCamera.enabled ;
+            _startCamera.enabled =!_startCamera.enabled;
+        }
+
+        private IEnumerator ShowLevelTimer()
+        {
+            yield return new WaitForSecondsRealtime(1);
+            SwitchShowLevelCameras();
+            yield return new WaitForSecondsRealtime(5);
+            SwitchShowLevelCameras();
+            yield return new WaitForSecondsRealtime(5);
+            _startCamera.enabled = false;
+        }
     }
 }

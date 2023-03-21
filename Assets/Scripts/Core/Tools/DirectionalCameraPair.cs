@@ -25,7 +25,7 @@ namespace Core.Tools
                 _directionalCameras = new Dictionary<Direction, CinemachineVirtualCamera>
                 {
                     { Direction.Right, _rightCamera },
-                    { Direction.Left, _leftCamera }
+                    { Direction.Left, _leftCamera },
                 };
                 return _directionalCameras;
             }
