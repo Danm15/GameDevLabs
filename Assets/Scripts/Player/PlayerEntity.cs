@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Core.Enum;
 using Core.Tools;using Cinemachine;
+using Player.PlayerAnimations;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +11,8 @@ namespace Player
 
     public class PlayerEntity : MonoBehaviour
     {
+        [SerializeField] private AnimatorController _playerAnimator;
+        
         [Header("HorizontalMovement")]
         [SerializeField] private float _horizontalSpeed;
         [SerializeField] private Direction _direction;
@@ -26,6 +29,8 @@ namespace Player
         private Rigidbody2D _playerRb;
         private CapsuleCollider2D _playerCollider2D;
         private float _raycastDistance = 1.49f;
+        private float _movement;
+        private bool _isJumping;
         
         private void Start()
         {
@@ -33,15 +38,31 @@ namespace Player
             _playerCollider2D = GetComponent<CapsuleCollider2D>();
             //ShowLevel();
         }
-        
+
+        private void Update()
+        {
+            UpdateAnimations();
+        }
+
+        private void UpdateAnimations()
+        {
+            _playerAnimator.PlayAnimation(AnimationType.Idle,true);
+            _playerAnimator.PlayAnimation(AnimationType.Run,_movement != 0);
+            _playerAnimator.PlayAnimation(AnimationType.Jump,_isJumping);
+        }
+
         public void Jump()
         {
-            if (IsOnGroundCheck()) 
+            if (IsOnGroundCheck())
+            {
+                _isJumping = true;
                 _playerRb.AddForce(_jumpForce * Vector2.up,ForceMode2D.Impulse);
+            }
         }
         
         public void MoveHorizontaly(float direction)
         {
+            _movement = direction;
             SetDirection(direction);
             Vector2 velocity = _playerRb.velocity;
             velocity.x = direction * _horizontalSpeed;
@@ -61,6 +82,11 @@ namespace Player
             transform.Rotate(0,180,0);
             _direction = _direction == Direction.Right ? Direction.Left : Direction.Right;
             CameraChange();
+        }
+
+        private void EndJump()
+        {
+            _isJumping = false;
         }
         
         private bool IsOnGroundCheck()
@@ -87,7 +113,7 @@ namespace Player
             _endCamera.enabled =!_endCamera.enabled ;
             _startCamera.enabled =!_startCamera.enabled;
         }
-
+        
         private IEnumerator ShowLevelTimer()
         {
             yield return new WaitForSecondsRealtime(1);
