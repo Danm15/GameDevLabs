@@ -40677,12 +40677,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAnimator: {fileID: 1079938872}
-  _horizontalSpeed: 5
-  _direction: 0
-  _jumpForce: 5
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  _directionalMoverData:
+    <HorizontalSpeed>k__BackingField: 5
+  _jumpData:
+    <JumpForce>k__BackingField: 5
+    <RaycastDistance>k__BackingField: 1.49
+    <GroundLayerMask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 64
   _directionalCameras:
     _rightCamera: {fileID: 1388137272}
     _leftCamera: {fileID: 775759872}

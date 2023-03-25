@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using Core.Enum;
 using Core.Tools;using Cinemachine;
-using Player.PlayerAnimations;
+using Core.Animations;
+using Core.Movement.Controller;
+using Core.Movement.Data;
+using StatsSystem;
 using UnityEngine;
 
 namespace Player
@@ -12,14 +15,12 @@ namespace Player
     public class PlayerEntity : MonoBehaviour
     {
         [SerializeField] private AnimatorController _playerAnimator;
-        
+
         [Header("HorizontalMovement")]
-        [SerializeField] private float _horizontalSpeed;
-        [SerializeField] private Direction _direction;
-        
-        [Header("Jump")]
-        [SerializeField] private float _jumpForce;
-        [SerializeField] private LayerMask _groundLayerMask;
+        [SerializeField] private DirectionalMoverData _directionalMoverData;
+
+        [Header("Jump")] 
+        [SerializeField] private JumpData _jumpData;
         
         [Header("Camera")]
         [SerializeField] private DirectionalCameraPair _directionalCameras;
@@ -28,78 +29,42 @@ namespace Player
         
         private Rigidbody2D _playerRb;
         private CapsuleCollider2D _playerCollider2D;
-        private float _raycastDistance = 1.49f;
-        private float _movement;
-        private bool _isJumping;
-        
-        private void Start()
+
+        private DirectionalMover _directionalMover;
+        private Jumper _jumper;
+      
+        public void Initialize(IStatValueGiver statValueGiver)
         {
             _playerRb = GetComponent<Rigidbody2D>();
             _playerCollider2D = GetComponent<CapsuleCollider2D>();
+            
+            _directionalMover = new DirectionalMover(_playerRb,_directionalMoverData,statValueGiver);
+            _jumper = new Jumper(_playerRb, _playerCollider2D, _jumpData,statValueGiver);
             //ShowLevel();
         }
 
         private void Update()
         {
             UpdateAnimations();
+            UpdateCameras();
         }
-
+        
+        public void Jump() => _jumper.Jump();
+        public void MoveHorizontaly(float direction) => _directionalMover.MoveHorizontaly(direction);
+        private void EndJump() => _jumper.EndJump();
+        
         private void UpdateAnimations()
         {
             _playerAnimator.PlayAnimation(AnimationType.Idle,true);
-            _playerAnimator.PlayAnimation(AnimationType.Run,_movement != 0);
-            _playerAnimator.PlayAnimation(AnimationType.Jump,_isJumping);
+            _playerAnimator.PlayAnimation(AnimationType.Run,_directionalMover.IsMoving);
+            _playerAnimator.PlayAnimation(AnimationType.Jump,_jumper.IsJumping);
         }
 
-        public void Jump()
-        {
-            if (IsOnGroundCheck())
-            {
-                _isJumping = true;
-                _playerRb.AddForce(_jumpForce * Vector2.up,ForceMode2D.Impulse);
-            }
-        }
-        
-        public void MoveHorizontaly(float direction)
-        {
-            _movement = direction;
-            SetDirection(direction);
-            Vector2 velocity = _playerRb.velocity;
-            velocity.x = direction * _horizontalSpeed;
-            _playerRb.velocity = velocity;
-        }
-        
-        private void SetDirection(float direction)
-        {
-            if ((_direction == Direction.Right && direction < 0) || (_direction == Direction.Left && direction > 0))
-            {
-                Flip();
-            }
-        }
-        
-        private void Flip()
-        {
-            transform.Rotate(0,180,0);
-            _direction = _direction == Direction.Right ? Direction.Left : Direction.Right;
-            CameraChange();
-        }
-
-        private void EndJump()
-        {
-            _isJumping = false;
-        }
-        
-        private bool IsOnGroundCheck()
-        {
-            RaycastHit2D groundRayHit =  Physics2D.Raycast(_playerCollider2D.bounds.center, Vector2.down,_raycastDistance,_groundLayerMask);
-            return groundRayHit.collider != null;
-        }
-
-        private void CameraChange()
+        private void UpdateCameras()
         {
             foreach (var cameraPair in _directionalCameras.DirectionalCameras)
             {
-                cameraPair.Value.enabled = cameraPair.Key == _direction;
+                cameraPair.Value.enabled = cameraPair.Key == _directionalMover.Direction;
             }
         }
 

@@ -1,7 +1,7 @@
 using Core.Enum;
 using UnityEngine;
 
-namespace Player.PlayerAnimations
+namespace Core.Animations
 {
     public abstract class AnimatorController : MonoBehaviour
     {
