@@ -11,19 +11,20 @@ namespace Player
     {
         private readonly PlayerEntity _playerEntity;
         private readonly PlayerBrain _playerBrain;
-        private readonly StatsController _statsController;
+        public  StatsController StatsController { get; private set; }
         private List<IDisposable> _disposables;
+        
         public PlayerSystem(PlayerEntity playerEntity , List<IEntityInputSource> inputSources)
         {
             _disposables = new List<IDisposable>();
             
             var statsStorage = Resources.Load<StatsStorage>($"Player/{nameof(StatsStorage)}");
             var stats = statsStorage.Stats.Select(stat => stat.GetCopy()).ToList();
-            _statsController = new StatsController(stats);
-            _disposables.Add(_statsController);
+            StatsController = new StatsController(stats);
+            _disposables.Add(StatsController);
             
             _playerEntity = playerEntity;
-            _playerEntity.Initialize(_statsController);
+            _playerEntity.Initialize(StatsController);
             
             _playerBrain = new PlayerBrain(_playerEntity, inputSources);
             _disposables.Add(_playerBrain);

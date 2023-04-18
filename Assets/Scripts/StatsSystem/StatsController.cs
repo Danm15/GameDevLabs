@@ -24,7 +24,7 @@ namespace StatsSystem
         
         public float GetStatValue(StatType statType) => _currentStats.Find(stat => stat.Type == statType);
         
-        private void ProcessModificator(StatModificator statModificator)
+        public void ProcessModificator(StatModificator statModificator)
         {
             var statToChange = _currentStats.Find(stat => stat.Type == statModificator.Stat.Type);
             

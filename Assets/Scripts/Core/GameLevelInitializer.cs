@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core.Services.Updater;
 using InputReader;
 using Player;
@@ -11,9 +12,12 @@ namespace Core
     {
         [SerializeField] private PlayerEntity _playerEntity;
         [SerializeField] private GameUIInputView _gameUIInput;
-        
+       
+
         private ExternalDevicesInputReader _externalDevicesInput;
         private PlayerSystem _playerSystem;
+   
+        
         private ProjectUpdater _projectUpdater;
         
         private List<IDisposable> _disposables;
@@ -38,6 +42,8 @@ namespace Core
                 _gameUIInput
             });
             _disposables.Add(_playerSystem);
+
+           
         }
 
         private void Update()
