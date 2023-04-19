@@ -152,14 +152,14 @@ MonoBehaviour:
   _button: {fileID: 1502249752447745084}
   _canvas: {fileID: 672007750240505446}
   _minSize: 1
-  _maxSize: 1
-  _minVerticalPosition: -4.4
-  _maxVerticalPosiion: -4.6
-  _itemTransform: {fileID: 7594045348082025697}
+  _maxSize: 2
+  _minVerticalPosition: 1
+  _maxVerticalPosiion: 1
+  _itemTransform: {fileID: 6412284601857670346}
   _dropAnimDuration: 1
   _dropRotation: 540
   _dropRadius: 2
-  InteractionDistance: 2
+  InteractionDistance: 4
 --- !u!1 &4438143202400140517
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,8 +197,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.015, y: 0.0497}
-  m_SizeDelta: {x: 2424.8357, y: 645.7609}
+  m_AnchoredPosition: {x: -0.036, y: -0.046}
+  m_SizeDelta: {x: 3114.201, y: 2081.2615}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &672007750240505446
 Canvas:
@@ -298,8 +298,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.4, y: -12.500001}
-  m_SizeDelta: {x: 0, y: 25}
+  m_AnchoredPosition: {x: -39, y: -260}
+  m_SizeDelta: {x: 0, y: 1254.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &82199464092918500
 CanvasRenderer:
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -569.27344, y: -383.2733, z: -612.80054, w: -353.34192}
+  m_margin: {x: -1047.7739, y: -1023.9769, z: -1156.1824, w: -1034.5964}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

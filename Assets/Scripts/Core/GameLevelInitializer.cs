@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Services.Updater;
 using InputReader;
+using Items;
+using Items.Data;
+using Items.Rarity;
+using Items.Storage;
 using Player;
 using UnityEngine;
 
@@ -12,10 +16,16 @@ namespace Core
     {
         [SerializeField] private PlayerEntity _playerEntity;
         [SerializeField] private GameUIInputView _gameUIInput;
-       
+        [SerializeField] private ItemRarityDescriptorsStorage _rarityDescriptorsStorage;
+        [SerializeField] private LayerMask _whatIsPlayer;
+        [SerializeField] private ItemsStorage _itemsStorage;
+
 
         private ExternalDevicesInputReader _externalDevicesInput;
         private PlayerSystem _playerSystem;
+
+        private DropGenerator _dropGenerator;
+        private ItemsSystem _itemsSystem;
    
         
         private ProjectUpdater _projectUpdater;
@@ -43,7 +53,14 @@ namespace Core
             });
             _disposables.Add(_playerSystem);
 
-           
+            ItemsFactory itemsFactory = new ItemsFactory(_playerSystem.StatsController);
+            List<IItemRarityColor> rarityColors =
+                _rarityDescriptorsStorage.RarityDescriptors.Cast<IItemRarityColor>().ToList();
+            _itemsSystem = new ItemsSystem(rarityColors, _whatIsPlayer, itemsFactory);
+            List<ItemDescriptor> descriptors =
+                _itemsStorage.ItemScriptables.Select(scriptable => scriptable.ItemDescriptor).ToList();
+            _dropGenerator = new DropGenerator(descriptors,_playerEntity, _itemsSystem);
+            
         }
 
         private void Update()
