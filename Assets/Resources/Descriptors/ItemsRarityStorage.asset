@@ -14,5 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <RarityDescriptors>k__BackingField:
   - <ItemRarity>k__BackingField: 1
-    <Sprite>k__BackingField: {fileID: 21300000, guid: 0c4e3f9a949bc094ab36608fb50d52dd, type: 3}
-    <Color>k__BackingField: {r: 0.3962264, g: 0.31959772, b: 0.31959772, a: 0}
+    <Sprite>k__BackingField: {fileID: -1779813781, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.8962264, g: 0.3665132, b: 0.04650232, a: 0}
+  - <ItemRarity>k__BackingField: 2
+    <Sprite>k__BackingField: {fileID: 1375435742, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0}
+  - <ItemRarity>k__BackingField: 3
+    <Sprite>k__BackingField: {fileID: 1258427590, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.8980392, g: 0.8953747, b: 0.047058802, a: 0}
+  - <ItemRarity>k__BackingField: 2
+    <Sprite>k__BackingField: {fileID: -140452840, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.8980393, g: 0.3647059, b: 0.039215688, a: 0}
+  - <ItemRarity>k__BackingField: 3
+    <Sprite>k__BackingField: {fileID: -172259777, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.7254902, g: 0.7254902, b: 0.7254902, a: 0}
+  - <ItemRarity>k__BackingField: 4
+    <Sprite>k__BackingField: {fileID: -1170453162, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.8980393, g: 0.8941177, b: 0.039215688, a: 0}
+  - <ItemRarity>k__BackingField: 2
+    <Sprite>k__BackingField: {fileID: -391495483, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.9433962, g: 0.09344962, b: 0.09344962, a: 0}
+  - <ItemRarity>k__BackingField: 2
+    <Sprite>k__BackingField: {fileID: 1972176760, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.9150943, g: 0.7305905, b: 0.030215396, a: 0}
+  - <ItemRarity>k__BackingField: 4
+    <Sprite>k__BackingField: {fileID: 1127835289, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.043137252, g: 0.69779384, b: 1, a: 0}
+  - <ItemRarity>k__BackingField: 5
+    <Sprite>k__BackingField: {fileID: 461780199, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.33485094, g: 0.031372562, b: 0.9137255, a: 0}
+  - <ItemRarity>k__BackingField: 2
+    <Sprite>k__BackingField: {fileID: -1566284355, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.031372562, g: 0.9137255, b: 0.044824637, a: 0}
+  - <ItemRarity>k__BackingField: 1
+    <Sprite>k__BackingField: {fileID: 1711434325, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.9137255, g: 0.15401934, b: 0.031372562, a: 0}
+  - <ItemRarity>k__BackingField: 2
+    <Sprite>k__BackingField: {fileID: 2115640746, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.00008899979, g: 0.01886791, b: 0.0003393852, a: 0}
+  - <ItemRarity>k__BackingField: 2
+    <Sprite>k__BackingField: {fileID: -1805975669, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.031372562, g: 0.9137255, b: 0.8591483, a: 0}
+  - <ItemRarity>k__BackingField: 3
+    <Sprite>k__BackingField: {fileID: -952610605, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
+    <Color>k__BackingField: {r: 0.4433962, g: 0.20155041, b: 0, a: 0}

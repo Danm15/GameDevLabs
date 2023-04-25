@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 207b81113979044b2abbc864a72adb78, type: 3}
-  m_Name: Item
+  m_Name: RedSmall
   m_EditorClassIdentifier: 
   _itemDescriptor:
-    <ItemId>k__BackingField: 0
+    <ItemId>k__BackingField: 7
     <Type>k__BackingField: 8
-    <ItemSprite>k__BackingField: {fileID: 21300000, guid: 0c4e3f9a949bc094ab36608fb50d52dd, type: 3}
+    <ItemSprite>k__BackingField: {fileID: 1711434325, guid: ba00d2cc9cfe3aa4dbabe584112b29a8, type: 3}
     <ItemRarity>k__BackingField: 1
-    <Price>k__BackingField: 1
-    <Level>k__BackingField: 1
+    <Price>k__BackingField: 0
+    <Level>k__BackingField: 0
     <Stats>k__BackingField:
     - <Stat>k__BackingField:
-        <Type>k__BackingField: 0
-        <Value>k__BackingField: 0
-      <Type>k__BackingField: 0
-      <Duration>k__BackingField: 0
+        <Type>k__BackingField: 1
+        <Value>k__BackingField: 2
+      <Type>k__BackingField: 1
+      <Duration>k__BackingField: 100
